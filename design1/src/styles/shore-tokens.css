@@ -1,0 +1,16 @@
+/* shoregtm.com - sampled brand tokens */
+:root {
+  --shore-white: #ffffff;
+  --shore-fog: #f5f5f5;
+  --shore-mist: #eef3f5;
+  --shore-heading: #083d3d;
+  --shore-text: #292929;
+  --shore-muted: #666666;
+  --shore-teal: #1a8a8a;
+  --shore-teal-mint: #6db7ae;
+  --shore-teal-pale: #dee9e7;
+  --shore-navy: #0d2b45;
+  --shore-coral: #e86b4f;
+  --shore-coral-hover: #d4775b;
+  --shore-link: #1a8a8a;
+}
