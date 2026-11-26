@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { TidelineCta } from "@/components/ui/tideline-cta";
+import { CALENDLY_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -78,69 +80,111 @@ const posts = [
 ];
 
 export default function InsightsPage() {
+  const [featured, ...rest] = posts;
+
   return (
     <>
-      <section className="bg-gradient-to-b from-shore-mist to-white pt-[calc(72px+3.5rem)] pb-10 md:pb-14">
-        <div className="mx-auto max-w-[920px] px-5">
-          <p className="mb-4 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-shore-teal">
-            Insights
-          </p>
-          <h1 className="max-w-[16ch] font-display text-[clamp(2.2rem,5vw,3.5rem)] leading-[1.1] tracking-[-0.02em] text-shore-heading">
-            Steady thinking for a fast-moving AI world.
-          </h1>
-        </div>
+      <div className="pt-[72px]">
+        <TidelineCta
+          theme="shore"
+          className="tlc--fullbleed tlc--overlay-light"
+          mediaSrc="/images/insights/insights-hero.jpg"
+          mediaVideoSrc="/videos/insights-hero.mp4"
+          mediaAlt="Calm harbor at dawn with still water and soft coastal fog"
+          eyebrow="Insights"
+          headline="Steady thinking for a fast-moving AI world."
+          lead="Practical GTM and AI writing for leadership teams who need clearer decisions - not more noise."
+          details={["Operator perspective", "Evidence over opinion", "Built for GTM leaders"]}
+          action="Book a discovery call"
+          href={CALENDLY_URL}
+        />
+      </div>
 
-        <div className="mx-auto mt-10 max-w-[920px] px-5">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-t-[28px] md:aspect-[2/1]">
-            <Image
-              src="/images/about/meeting-strategy.png"
-              alt="Leadership team reviewing a go-to-market strategy"
-              fill
-              priority
-              sizes="(max-width: 920px) 100vw, 920px"
-              className="object-cover object-[50%_28%]"
-            />
+      <section className="border-t border-shore-heading/10 bg-white py-20 md:py-24">
+        <div className="mx-auto max-w-[1200px] px-5">
+          <div className="max-w-[36rem]">
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-shore-teal">
+              Latest writing
+            </p>
+            <h2 className="mt-3 font-display text-[clamp(1.55rem,3vw,2.1rem)] leading-tight tracking-[-0.02em] text-shore-heading">
+              Essays and notes on GTM performance, AI, and how leaders decide.
+            </h2>
           </div>
-        </div>
-      </section>
 
-      <section className="bg-white pb-20 md:pb-28">
-        <div className="mx-auto max-w-[920px] space-y-14 px-5 pt-12 md:space-y-16 md:pt-16">
-          {posts.map((post) => (
-            <article key={post.href} className="group">
-              <Link
-                href={post.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] bg-shore-mist">
-                  <Image
-                    src={post.image}
-                    alt={post.imageAlt}
-                    fill
-                    sizes="(max-width: 920px) 100vw, 920px"
-                    className="object-cover transition duration-500 group-hover:scale-[1.02]"
-                  />
-                </div>
-
-                <p className="mt-6 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-shore-teal">
-                  {post.tag}
+          <article className="group mt-12 border-t border-shore-heading/10 pt-12">
+            <Link
+              href={featured.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-14"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden bg-shore-fog">
+                <Image
+                  src={featured.image}
+                  alt={featured.imageAlt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className="object-cover transition duration-500 group-hover:scale-[1.02]"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col justify-center lg:py-2">
+                <p className="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-shore-teal">
+                  {featured.tag}
                 </p>
-                <h2 className="mt-3 max-w-[28ch] font-display text-[clamp(1.45rem,2.8vw,2rem)] leading-[1.2] text-shore-heading transition group-hover:text-shore-teal">
-                  {post.title}
-                </h2>
-                <p className="mt-4 max-w-[58ch] text-[1.02rem] leading-relaxed text-shore-body">
-                  {post.blurb}
+                <h3 className="mt-3 max-w-[22ch] font-display text-[clamp(1.45rem,2.6vw,1.95rem)] leading-[1.2] tracking-[-0.02em] text-shore-heading transition group-hover:text-shore-teal">
+                  {featured.title}
+                </h3>
+                <p className="mt-4 max-w-[42ch] text-[1.025rem] leading-relaxed text-shore-body">
+                  {featured.blurb}
                 </p>
-                {(post.author || post.read) && (
-                  <p className="mt-4 font-mono text-[0.7rem] tracking-[0.06em] text-shore-muted">
-                    {[post.author, post.read].filter(Boolean).join(" · ")}
+                {(featured.author || featured.read) && (
+                  <p className="mt-5 font-mono text-[0.7rem] tracking-[0.06em] text-shore-muted">
+                    {[featured.author, featured.read].filter(Boolean).join(" · ")}
                   </p>
                 )}
-              </Link>
-            </article>
-          ))}
+              </div>
+            </Link>
+          </article>
+
+          <div className="mt-4 border-t border-shore-heading/10">
+            {rest.map((post) => (
+              <article key={post.href} className="group border-b border-shore-heading/10">
+                <Link
+                  href={post.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="grid gap-6 py-8 sm:grid-cols-[minmax(0,11rem)_minmax(0,1fr)] sm:gap-8 md:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] md:gap-10"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-shore-fog sm:aspect-[4/3]">
+                    <Image
+                      src={post.image}
+                      alt={post.imageAlt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 224px"
+                      className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-shore-teal">
+                      {post.tag}
+                    </p>
+                    <h3 className="mt-2 max-w-[34ch] font-display text-[clamp(1.2rem,2vw,1.45rem)] leading-snug tracking-[-0.015em] text-shore-heading transition group-hover:text-shore-teal">
+                      {post.title}
+                    </h3>
+                    <p className="mt-3 max-w-[48ch] text-[0.975rem] leading-relaxed text-shore-body">
+                      {post.blurb}
+                    </p>
+                    {(post.author || post.read) && (
+                      <p className="mt-4 font-mono text-[0.7rem] tracking-[0.06em] text-shore-muted">
+                        {[post.author, post.read].filter(Boolean).join(" · ")}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </>

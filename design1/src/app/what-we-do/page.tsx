@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { GtmOsDetailPanel } from "@/components/gtm-os-detail-panel";
 import { TidelineCta } from "@/components/ui/tideline-cta";
+import { WaysToEngage } from "@/components/ways-to-engage";
+import { WhatWeDoFaq } from "@/components/what-we-do-faq";
 import { ASSESSMENT_URL, CALENDLY_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -100,44 +102,46 @@ export default function WhatWeDoPage() {
       <div className="pt-[72px]">
         <TidelineCta
           theme="shore"
-          animateOnMount
           className="tlc--fullbleed"
           mediaSrc="/images/what-we-do-hero.png"
+          mediaVideoSrc="/videos/what-we-do-hero.mp4"
           mediaAlt="Rocky coastline and teal ocean at golden hour"
+          eyebrow="What we do"
           headline="Growth is slowing, but the reason is not obvious."
+          lead="Growth is off plan. Pipeline quality is uneven. Sales cycles are taking longer. Customer expansion is harder than it should be."
           sub={
             <>
-              Growth is off plan. Pipeline quality is uneven. Sales cycles are taking longer.
-              Customer expansion is harder than it should be. Teams are working, but the results are
-              not matching the effort.
-              <br />
-              <br />
-              That is usually when companies start looking for a new tool, a new campaign, a new
-              process, or an AI initiative. We take a different approach.
-              <br />
-              <br />
-              Shore GTM helps leadership teams slow down long enough to find the real problem, decide
-              what needs to change, and put the right solution into motion. AI may be part of that
-              solution. It is not where we start.
+              <p>
+                That is usually when companies start looking for a new tool, a new campaign, a new
+                process, or an AI initiative. We take a different approach.
+              </p>
+              <p>
+                Shore GTM helps leadership teams find the real problem, decide what needs to change,
+                and put the right solution into motion. AI may be part of that solution. It is not
+                where we start.
+              </p>
             </>
           }
-          details={["25+ years leading GTM teams"]}
-          taken={0.58}
-          showCapacity={false}
+          details={[
+            "25+ years leading GTM teams",
+            "3x Founder / 2x Exits",
+            "CEO · CMO · GM",
+            "GTM OS™ Certified Partner",
+          ]}
           action="Book a discovery call"
-          href="https://calendly.com/patrickrooney/learn-more-about-shore-gtm"
+          href={CALENDLY_URL}
         />
       </div>
 
-      <section className="py-16">
+      <section className="border-y border-shore-heading/10 bg-shore-fog py-20 md:py-28">
         <div className="mx-auto max-w-[1200px] px-5">
           <p className="mb-4 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-shore-teal">
             How we work
           </p>
-          <h2 className="max-w-[28ch] font-display text-[clamp(1.65rem,3.2vw,2.35rem)] text-shore-heading">
+          <h2 className="max-w-[28ch] font-display text-[clamp(1.65rem,3.2vw,2.35rem)] leading-tight tracking-[-0.02em] text-shore-heading">
             We help leadership teams move from symptoms to decisions.
           </h2>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <ol className="mt-12 grid gap-10 border-t border-shore-heading/10 pt-10 md:grid-cols-3 md:gap-0">
             {[
               ["01", "Diagnose the problem", "Cut through the noise to find what's really holding growth back."],
               [
@@ -150,183 +154,143 @@ export default function WhatWeDoPage() {
                 "Build what works",
                 "Develop and execute the solution, using AI, automation, updated workflows, and data insights.",
               ],
+            ].map(([n, t, b], i) => (
+              <li
+                key={n}
+                className={`flex flex-col gap-3 md:px-8 ${i === 0 ? "md:pl-0" : "md:border-l md:border-shore-heading/10"} ${i === 2 ? "md:pr-0" : ""}`}
+              >
+                <span className="font-mono text-sm tracking-[0.12em] text-shore-teal">{n}</span>
+                <h3 className="font-display text-[1.25rem] leading-snug tracking-[-0.015em] text-shore-heading">
+                  {t}
+                </h3>
+                <p className="max-w-[32ch] text-[0.975rem] leading-relaxed text-shore-body">{b}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <WaysToEngage services={services} />
+
+      <section className="relative overflow-hidden border-t border-shore-heading/10 bg-shore-fog py-14 md:py-20">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-24 top-0 h-80 w-80 rounded-full bg-shore-teal/[0.06] blur-3xl"
+        />
+        <div className="relative mx-auto max-w-[1200px] px-5">
+          <div className="max-w-[40rem]">
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-shore-teal">
+              The GTM OS™
+            </p>
+            <h2 className="mt-3 max-w-[22ch] font-display text-[clamp(1.45rem,2.8vw,2.1rem)] leading-tight tracking-[-0.02em] text-shore-heading">
+              AI only works once you know what the GTM problem is.
+            </h2>
+            <p className="mt-3 max-w-[44ch] text-[0.975rem] leading-relaxed text-shore-body">
+              Powering GTM with AI solutions to drive revenue growth once the constraint is clear.
+            </p>
+          </div>
+
+          <div className="mt-8 md:mt-10">
+            <GtmOsDetailPanel />
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-shore-navy py-20 md:py-28">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 60% at 0% 100%, rgba(26,138,138,0.22), transparent 55%), radial-gradient(ellipse 45% 50% at 100% 0%, rgba(109,183,174,0.15), transparent 50%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1200px] px-5">
+          <div className="max-w-[40rem]">
+            <p className="mb-4 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-shore-mint">
+              AI across the GTM system
+            </p>
+            <h2 className="max-w-[28ch] font-display text-[clamp(1.55rem,3vw,2.15rem)] leading-tight tracking-[-0.02em] text-white">
+              Most employees use AI in their everyday work. Leaders struggle to harness AI to deliver
+              measurable business outcomes.
+            </h2>
+            <p className="mt-5 max-w-[42ch] text-[1.05rem] leading-relaxed text-shore-pale">
+              We work inside the GTM system to connect AI to meaningful results, where it makes sense.
+            </p>
+          </div>
+
+          <div className="relative mt-12 aspect-[2/1] overflow-hidden ring-1 ring-white/10">
+            <Image
+              src="/images/gtm-ai-workshop.png"
+              alt="Shore GTM workshop session mapping AI initiatives on a glass whiteboard"
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="object-cover object-center"
+              priority={false}
+            />
+          </div>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-3 md:gap-6">
+            {[
+              [
+                "01",
+                "Marketing",
+                "Stop producing content and campaigns that can't be tied to pipeline. We build AI-enabled workflows that sharpen buyer intelligence, improve personalization, and connect marketing activity to revenue outcomes.",
+              ],
+              [
+                "02",
+                "Sales & Revenue Operations",
+                "Replace manual, time-consuming sales activity and unreliable pipeline data with workflows that streamline prospecting, improve prospect quality and forecast accuracy, and increase sales team capacity without adding headcount.",
+              ],
+              [
+                "03",
+                "Customer Success & Retention",
+                "Protect and grow existing revenue. We build workflows that surface churn risk earlier, improve renewal preparation, and give CS teams the account intelligence to act before it's too late.",
+              ],
             ].map(([n, t, b]) => (
               <article
                 key={n}
-                className="rounded-xl border border-shore-pale bg-shore-pale p-6 transition hover:border-shore-mint/40"
+                className="flex h-full flex-col gap-4 rounded-lg border border-white/12 bg-white/[0.07] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] md:p-7"
               >
-                <p className="mb-4 font-mono text-xs text-shore-teal">{n}</p>
-                <h3 className="font-display text-lg text-shore-heading">{t}</h3>
-                <p className="mt-2 text-[0.9375rem] text-shore-body">{b}</p>
+                <span className="font-mono text-[0.7rem] tracking-[0.12em] text-shore-mint">{n}</span>
+                <h3 className="font-display text-[1.15rem] leading-snug tracking-[-0.015em] text-white">
+                  {t}
+                </h3>
+                <p className="text-[0.9375rem] leading-[1.65] text-shore-pale">{b}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="pb-20">
-        <div className="mx-auto max-w-[1200px] px-5">
-          <p className="mb-4 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-shore-teal">
-            Ways to engage
+      <WhatWeDoFaq items={faqs} />
+
+      <section className="relative overflow-hidden bg-shore-navy py-20 md:py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 70% at 50% 0%, rgba(26,138,138,0.22), transparent 55%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[640px] px-5 text-center">
+          <p className="mb-5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-shore-mint">
+            Next step
           </p>
-          <h2 className="max-w-[24ch] font-display text-[clamp(1.65rem,3.2vw,2.35rem)] text-shore-heading">
-            We meet you where you&apos;re at.
-          </h2>
-
-          <div className="mt-10">
-            {services.map((s) => (
-              <article
-                key={s.label}
-                className="grid gap-6 border-b border-shore-pale py-8 first:border-t md:grid-cols-[280px_1fr] md:gap-12"
-              >
-                <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.1em] text-shore-teal">
-                    {s.label}
-                  </p>
-                  <h3 className="font-display text-[1.35rem] leading-snug text-shore-heading">
-                    {s.title}
-                  </h3>
-                </div>
-                <div>
-                  <p className="text-shore-body">{s.body}</p>
-                  <p className="mt-4 font-semibold text-shore-heading">What you leave with</p>
-                  <ul className="mt-2 space-y-2">
-                    {s.outcomes.map((o) => (
-                      <li
-                        key={o}
-                        className="relative pl-4 text-[0.9375rem] text-shore-body before:absolute before:left-0 before:top-[0.55em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-shore-teal"
-                      >
-                        {o}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-shore-pale bg-white py-16 md:py-20">
-        <div className="mx-auto max-w-[1200px] px-5">
-          <p className="mb-4 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-shore-teal">
-            Powering GTM with AI solutions to drive revenue growth
-          </p>
-          <h2 className="max-w-[28ch] font-display text-[clamp(1.65rem,3.2vw,2.35rem)] text-shore-heading">
-            AI only works once you know what the GTM problem is.
-          </h2>
-
-          <div className="mt-10">
-            <GtmOsDetailPanel />
-          </div>
-
-          <div className="mt-10 flex justify-center">
-            <a
-              href="https://calendly.com/patrickrooney/learn-more-about-shore-gtm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex rounded-md bg-shore-coral px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.06em] text-white hover:bg-shore-coral-hover"
-            >
-              Struggling with GTM AI? Let&apos;s talk.
-            </a>
-          </div>
-
-          <div className="mt-16 md:mt-20">
-            <h3 className="max-w-[28ch] font-display text-[clamp(1.45rem,2.8vw,2.05rem)] leading-[1.2] text-shore-heading">
-              Most employees use AI in their everyday work. Leaders struggle to harness AI to deliver
-              measurable business outcomes.
-            </h3>
-            <p className="mt-4 max-w-[42ch] text-[1.05rem] leading-relaxed text-shore-body">
-              We work inside the GTM system to connect AI to meaningful results, where it makes sense.
-            </p>
-
-            <div className="mt-10 grid items-stretch gap-6 lg:grid-cols-2 lg:gap-10">
-              <div className="flex flex-col gap-4">
-                {[
-                  [
-                    "Marketing",
-                    "Stop producing content and campaigns that can't be tied to pipeline. We build AI-enabled workflows that sharpen buyer intelligence, improve personalization, and connect marketing activity to revenue outcomes.",
-                  ],
-                  [
-                    "Sales & Revenue Operations",
-                    "Replace manual, time-consuming sales activity and unreliable pipeline data with workflows that streamline prospecting, improve prospect quality and forecast accuracy, and increase sales team capacity without adding headcount.",
-                  ],
-                  [
-                    "Customer Success & Retention",
-                    "Protect and grow existing revenue. We build workflows that surface churn risk earlier, improve renewal preparation, and give CS teams the account intelligence to act before it's too late.",
-                  ],
-                ].map(([t, b]) => (
-                  <article
-                    key={t}
-                    className="rounded-2xl bg-shore-navy px-6 py-5 text-white shadow-[0_12px_36px_rgba(13,43,69,0.18)]"
-                  >
-                    <h4 className="text-[1.05rem] font-semibold tracking-tight text-white">{t}</h4>
-                    <p className="mt-2 text-[0.9rem] leading-relaxed text-white/78">{b}</p>
-                  </article>
-                ))}
-              </div>
-
-              <div className="relative min-h-[420px] overflow-hidden rounded-2xl lg:min-h-full">
-                <Image
-                  src="/images/gtm-ai-workshop.png"
-                  alt="Shore GTM workshop session mapping AI initiatives on a glass whiteboard"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-shore-mist py-16 md:py-20">
-        <div className="mx-auto max-w-[1200px] px-5">
-          <p className="mb-4 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-shore-teal">
-            Common questions
-          </p>
-          <h2 className="max-w-[22ch] font-display text-[clamp(1.65rem,3.2vw,2.35rem)] text-shore-heading">
-            Straight answers to the questions customers ask.
-          </h2>
-
-          <div className="mt-10 divide-y divide-shore-heading/10 border-y border-shore-heading/10">
-            {faqs.map((item) => (
-              <details key={item.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-left marker:content-none [&::-webkit-details-marker]:hidden">
-                  <span className="text-[1.05rem] font-semibold leading-snug text-shore-heading md:text-[1.125rem]">
-                    {item.q}
-                  </span>
-                  <span
-                    aria-hidden
-                    className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-shore-heading/15 text-shore-teal transition group-open:rotate-45 group-open:border-shore-teal/40"
-                  >
-                    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.75">
-                      <path d="M8 3v10M3 8h10" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                </summary>
-                <p className="mt-4 max-w-[62ch] text-[0.975rem] leading-relaxed text-shore-body">{item.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-shore-navy py-20 text-center text-white">
-        <div className="mx-auto max-w-[1200px] px-5">
-          <h2 className="mx-auto max-w-[20ch] font-display text-[clamp(1.65rem,3.2vw,2.35rem)] text-white">
+          <h2 className="font-display text-[clamp(1.85rem,3.4vw,2.55rem)] leading-[1.12] tracking-[-0.025em] text-white">
             Not sure where to start?
           </h2>
-          <p className="mx-auto mt-4 max-w-[46ch] text-white/80">
-            Let&apos;s schedule a 30-minute call to understand where you are and what you are working
-            to achieve. From there we can provide a clear-eyed recommendation on the right next step.
+          <p className="mx-auto mt-5 max-w-[42ch] text-[1.025rem] leading-[1.7] text-shore-pale">
+            Thirty minutes to understand where you are and what you&apos;re working to achieve. From
+            there we give a clear-eyed recommendation on the right next step.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-md bg-shore-coral px-6 py-3.5 text-sm font-semibold text-white hover:bg-shore-coral-hover"
+              className="inline-flex rounded-md bg-shore-coral px-6 py-3 text-sm font-medium text-white transition hover:bg-shore-coral-hover"
             >
               Book a discovery call
             </a>
@@ -334,7 +298,7 @@ export default function WhatWeDoPage() {
               href={ASSESSMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-md border border-white/40 px-6 py-3.5 text-sm font-semibold text-white hover:border-white"
+              className="inline-flex rounded-md border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white hover:bg-white/5"
             >
               Take the assessment
             </a>

@@ -281,3 +281,228 @@
     }
   }
 }
+/* Shared page hero / overlay entrance */
+.page-reveal .pr-media,
+.page-reveal .pr-veil,
+.page-reveal .pr-item {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.page-reveal .pr-item {
+  transform: translateY(18px);
+}
+
+.page-reveal .pr-media {
+  transform: scale(1.06);
+}
+
+.page-reveal .pr-veil {
+  transform: translateX(-4%);
+}
+
+.page-reveal[data-play] .pr-media {
+  animation:
+    page-media-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    page-media-drift 18s ease-in-out 1.2s infinite alternate;
+}
+
+.page-reveal[data-play] .pr-veil {
+  animation: page-veil-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.06s forwards;
+}
+
+.page-reveal[data-play] .pr-item {
+  animation: page-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.page-reveal[data-play] .pr-item--1 {
+  animation-delay: 0.16s;
+}
+.page-reveal[data-play] .pr-item--2 {
+  animation-delay: 0.28s;
+}
+.page-reveal[data-play] .pr-item--3 {
+  animation-delay: 0.42s;
+}
+.page-reveal[data-play] .pr-item--4 {
+  animation-delay: 0.54s;
+}
+.page-reveal[data-play] .pr-item--5 {
+  animation-delay: 0.66s;
+}
+.page-reveal[data-play] .pr-item--6 {
+  animation-delay: 0.78s;
+}
+
+@keyframes page-media-in {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes page-media-drift {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.06) translate3d(-1%, -0.5%, 0);
+  }
+}
+
+@keyframes page-veil-in {
+  from {
+    opacity: 0;
+    transform: translateX(-5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes page-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-reveal .pr-media,
+  .page-reveal .pr-veil,
+  .page-reveal .pr-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* About — certifications strip */
+.credentials-strip .cred-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  will-change: opacity, transform;
+}
+
+.credentials-strip .credentials-strip__rule {
+  transform: scaleX(0);
+  transform-origin: center;
+}
+
+@media (min-width: 768px) {
+  .credentials-strip .credentials-strip__rule {
+    transform-origin: left center;
+  }
+}
+
+.credentials-strip[data-visible] .credentials-strip__glow {
+  animation: cred-glow-pulse 6s ease-in-out infinite;
+}
+
+.credentials-strip[data-visible] .credentials-strip__rule {
+  animation: cred-rule-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.credentials-strip[data-visible] .cred-reveal {
+  animation: cred-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.credentials-strip[data-visible] .cred-reveal--0 {
+  animation-delay: 0.05s;
+}
+
+.credentials-strip[data-visible] .cred-reveal--1 {
+  animation-delay: 0.18s;
+}
+
+.credentials-strip[data-visible] .cred-reveal--2 {
+  animation-delay: 0.32s;
+}
+
+.credentials-strip[data-visible] .cred-reveal--3 {
+  animation-delay: 0.46s;
+}
+
+.credentials-strip[data-visible] .cred-badge__frame {
+  animation: cred-badge-float 5.5s ease-in-out infinite;
+}
+
+.credentials-strip[data-visible] .cred-reveal--2 .cred-badge__frame {
+  animation-delay: 0.4s;
+}
+
+.credentials-strip[data-visible] .cred-reveal--3 .cred-badge__frame {
+  animation-delay: 0.9s;
+}
+
+.credentials-strip[data-visible] .cred-badge:hover .cred-badge__frame {
+  animation-play-state: paused;
+  transform: translateY(-2px) scale(1.03);
+  transition: transform 0.25s ease;
+}
+
+@keyframes cred-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cred-rule-grow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes cred-badge-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes cred-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credentials-strip .cred-reveal,
+  .credentials-strip .credentials-strip__rule {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .credentials-strip[data-visible] .cred-badge__frame {
+    animation: none !important;
+  }
+
+  .credentials-strip[data-visible] .credentials-strip__glow {
+    animation: none !important;
+  }
+
+}
